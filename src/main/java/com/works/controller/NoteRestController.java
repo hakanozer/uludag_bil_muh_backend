@@ -15,4 +15,14 @@ public class NoteRestController {
         return "Note List";
     }
 
+    // Note ödev - Entity
+    // id(Long), title(String), detail(String), day(Integer)
+    // Save
+    // SaveAll
+    // Delete
+    // Update
+    // List - Sayafalandırma (page)
+    // Search (title, detail) (page)
 }
+
+
