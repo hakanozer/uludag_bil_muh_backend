@@ -7,5 +7,26 @@
 </head>
 <body>
     <h1>Welcome Login</h1>
+    <h2 th:text="${title}"></h2>
+    <h2 th:text="${message}"></h2>
+    <ul>
+        <li th:each="city : ${cities}">
+            <span th:text="${city}"></span>
+        </li>
+    </ul>
+
+    <hr />
+    <form action="mvc/login" method="post">
+        <input type="text" name="username" />
+        <button>Send</button>
+    </form>
+
+    <hr/>
+    <form action="mvc/register" method="post">
+        <input required type="text" name="name" placeholder="Name" />
+        <input required type="text" name="username" placeholder="Username" />
+        <input required type="password" name="password" placeholder="Password" />
+        <button>Send</button>
+    </form>
 </body>
 </html>
