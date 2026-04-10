@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, content)">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <th:block th:replace="inc/css"></th:block>
+  <title th:replace="${title}">App</title>
+</head>
+
+<body>
+<div class="container">
+  <th:block th:replace="inc/header"></th:block>
+  <div class="row">
+    <div class="col-3">
+      <th:block th:replace="inc/menu"></th:block>
+    </div>
+    <div class="col-9">
+      <div th:replace="${content}"></div>
+    </div>
+  </div>
+  <th:block th:replace="inc/footer"></th:block>
+</div>
+
+
+</body>
+</html>

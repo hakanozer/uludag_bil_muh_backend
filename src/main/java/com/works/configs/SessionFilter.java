@@ -25,7 +25,7 @@ public class SessionFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String urlPath = request.getRequestURI();
-        String[] freeUrls = {"/customer", "/mvc", "/actuator"};
+        String[] freeUrls = {"/customer", "/mvc/customer", "/actuator"};
 
         boolean isAuth = true;
         for (String freeUrl : freeUrls) {

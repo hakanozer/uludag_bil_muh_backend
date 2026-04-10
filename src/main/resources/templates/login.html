@@ -1,32 +1,77 @@
-<!doctype html >
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Login</title>
+    <th:block th:replace="inc/css"></th:block>
 </head>
+
 <body>
-    <h1>Welcome Login</h1>
-    <h2 th:text="${title}"></h2>
-    <h2 th:text="${message}"></h2>
-    <ul>
-        <li th:each="city : ${cities}">
-            <span th:text="${city}"></span>
-        </li>
-    </ul>
 
-    <hr />
-    <form action="mvc/login" method="post">
-        <input type="text" name="username" />
-        <button>Send</button>
-    </form>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="col-12 col-md-6 col-lg-4">
 
-    <hr/>
-    <form action="mvc/register" method="post">
-        <input required type="text" name="name" placeholder="Name" />
-        <input required type="text" name="username" placeholder="Username" />
-        <input required type="password" name="password" placeholder="Password" />
-        <button>Send</button>
-    </form>
+        <div class="card shadow p-4">
+            <h3 class="text-center mb-4">Login</h3>
+            <p class="text-center mb-4">Please enter your credentials to login.</p>
+
+            <form th:action="@{/mvc/customer/login}"
+                  th:object="${customerLoginRequestDto}"
+                  method="post">
+
+                <!-- USERNAME -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+
+                    <input type="text"
+                           required="required"
+                           th:field="*{username}"
+                           class="form-control"
+                           placeholder="Enter username">
+
+                    <!-- HATA -->
+                    <div class="text-danger mt-1"
+                         th:if="${#fields.hasErrors('username')}"
+                         th:errors="*{username}">
+                    </div>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+
+                    <input type="password"
+                           th:field="*{password}"
+                           class="form-control"
+                           placeholder="Enter password">
+
+                    <!-- HATA -->
+                    <div class="text-danger mt-1"
+                         th:if="${#fields.hasErrors('password')}"
+                         th:errors="*{password}">
+                    </div>
+                </div>
+
+                <div class="text-danger mb-3"
+                     th:if="${loginError}">
+                    Invalid username or password
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Login
+                    </button>
+                    <a href="/mvc/customer/register" class="btn btn-secondary w-100">Register</a>
+                </div>
+            </form>
+            <p class="text-center">
+                <a href="/mvc/customer/forgot-password">Forgot Password?</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>

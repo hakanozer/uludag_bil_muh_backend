@@ -3,6 +3,9 @@ package com.works.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -10,8 +13,8 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.works.entity.Customer}
  */
-@Value
-public class CustomerLoginRequestDto implements Serializable {
+@Data
+public class CustomerLoginRequestDto {
     @NotNull
     @NotEmpty
     @Size(min = 5, max = 100)
