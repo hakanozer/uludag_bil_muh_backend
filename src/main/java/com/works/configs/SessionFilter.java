@@ -105,3 +105,14 @@ public class SessionFilter implements Filter {
         return xfHeader.split(",")[0];
     }
 }
+
+/*
+* Ödev:
+
+http://localhost:8090/mvc/dashboard login olmadan gitmek istendiğinde kullanıcının karşısına aşağıdaki json çıkıyor, bu json datası rest api için normal bir davranışken mvc bir uygulama için uygun değildir. Giriş yapmamış kullanıcının http://localhost:8090/mvc/customer/login ekranına yönlendirilmesi beklenmektedir. bunun için gerekli kodlayı yapınız.
+
+{
+"success": false,
+"message": "Unauthorized access. Please log in."
+}
+* */
