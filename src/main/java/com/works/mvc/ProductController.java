@@ -1,22 +1,22 @@
 package com.works.mvc;
 
+import com.works.dto.ProductUpdateRequestDto;
 import com.works.entity.Product;
 import com.works.repository.ProductRepository;
 import com.works.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("mvc")
 @RequiredArgsConstructor
 public class ProductController {
 
+    final HttpServletRequest request;
     final ProductService productService;
     final ProductRepository productRepository;
 
@@ -35,11 +35,19 @@ public class ProductController {
 
     @GetMapping("product/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
+        request.getSession().setAttribute("selectId", id);
         Product product = productRepository.findById(id).get();
         model.addAttribute("product", product);
         return "productUpdate";
     }
 
+    @PostMapping("product/update")
+    public String update(ProductUpdateRequestDto productUpdateRequestDto) {
+        Long selectId = (long) request.getSession().getAttribute("selectId");
+        productUpdateRequestDto.setId(selectId);
+        productService.update(productUpdateRequestDto);
+        return "redirect:/mvc/product";
+    }
 
 
 }

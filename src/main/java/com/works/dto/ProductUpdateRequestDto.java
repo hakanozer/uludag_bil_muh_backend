@@ -1,6 +1,7 @@
 package com.works.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -9,8 +10,8 @@ import java.math.BigDecimal;
 /**
  * DTO for {@link com.works.entity.Product}
  */
-@Value
-public class ProductUpdateRequestDto implements Serializable {
+@Data
+public class ProductUpdateRequestDto {
     @NotNull
     @Min(1)
     @Max(Long.MAX_VALUE)
