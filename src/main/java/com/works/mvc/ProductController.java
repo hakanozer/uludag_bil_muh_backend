@@ -49,5 +49,12 @@ public class ProductController {
         return "redirect:/mvc/product";
     }
 
+    @GetMapping("product/search")
+    public String search(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "") String q) {
+        Page<Product> productPage = productService.search(q, page-1, "asc");
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("q", q);
+        return "product";
+    }
 
 }

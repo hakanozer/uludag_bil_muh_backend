@@ -9,6 +9,14 @@
   <div th:if="${error}" class="alert alert-danger">
       <span th:text="${error}"></span>
   </div>
+
+  <form class="d-flex" method="get" action="/mvc/product/search">
+      <div class="input-group mb-3">
+          <input th:value="${q}" name="q" type="search" class="form-control" placeholder="Search">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </div>
+  </form>
+
   <th:block th:if="${productPage.content.size() > 0 }">
 
       <nav aria-label="Page navigation example">
@@ -16,7 +24,12 @@
               <span class="text-muted" th:text="${'Total : ' + productPage.totalElements}"></span>
               <ul class="pagination justify-content-end pagination-sm">
                   <li th:each="page : ${#numbers.sequence( 1, productPage.totalPages, 1)}" class="page-item" th:classappend="${page == productPage.number + 1} ? 'active'">
-                      <a class="page-link" th:href="${'/mvc/product?page='+page}" th:text="${page}"></a>
+                      <th:block th:if="${q == null}">
+                          <a class="page-link" th:href="${'/mvc/product?page='+page}" th:text="${page}"></a>
+                      </th:block>
+                      <th:block th:if="${q != null}">
+                          <a class="page-link" th:href="${'/mvc/product/search?q='+q+'&page='+page}" th:text="${page}"></a>
+                      </th:block>
                   </li>
               </ul>
           </div>
