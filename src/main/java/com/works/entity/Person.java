@@ -1,5 +1,6 @@
 package com.works.entity;
 
+import com.works.util.EStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,12 +18,17 @@ public class Person {
     private String surname;
     @Column(unique = true)
     private String email;
-    private String phone;
+
+    @ElementCollection
+    private List<String> phoneList;
 
     @ManyToMany
     private List<Address> addressList;
 
     @Embedded
     private IdentityInfo identityInfo;
+
+    @Enumerated(EnumType.STRING)
+    private EStatus status = EStatus.ACTIVE;
 
 }
