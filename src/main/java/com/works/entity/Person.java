@@ -22,5 +22,7 @@ public class Person {
     @ManyToMany
     private List<Address> addressList;
 
+    @Embedded
+    private IdentityInfo identityInfo;
 
 }
