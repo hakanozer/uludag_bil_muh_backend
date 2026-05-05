@@ -55,4 +55,9 @@ public class ProductRestController {
         return productService.search(q, page, price);
     }
 
+    @GetMapping("control")
+    public void control(){
+
+    }
+
 }
