@@ -29,4 +29,9 @@ public class CustomerRestController {
         return customerService.login(customerLoginRequestDto);
     }
 
+    @GetMapping("logout")
+    public void logout(){
+        customerService.logout();
+    }
+
 }
