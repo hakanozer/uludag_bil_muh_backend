@@ -84,4 +84,12 @@ public class ProductService {
         return productPage;
     }
 
+    public Product getOne(Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()){
+            return optionalProduct.get();
+        }
+        throw new RuntimeException("Product not found id: " + id);
+    }
+
 }

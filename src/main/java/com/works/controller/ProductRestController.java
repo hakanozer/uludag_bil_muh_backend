@@ -56,8 +56,12 @@ public class ProductRestController {
     }
 
     @GetMapping("control")
-    public void control(){
+    public void control(){}
 
+    @GetMapping("getOne/{id}")
+    public Product getOne(@PathVariable Long id){
+        return productService.getOne(id);
     }
+
 
 }
